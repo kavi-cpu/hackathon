@@ -1,0 +1,27 @@
+const url = "https://api.openbrewerydb.org/breweries";
+
+const fetchdata = async() => {
+    try {
+        const response = await fetch(url);
+        const openbrewerydb = await response.json();
+        openbrewerydb.forEach(element => {
+            const div = document.createElement(`div`);
+            let web = '';
+            if (element.web_url) {
+                website = element.web_url
+            }
+            div.innerHTML = `
+                Name= ${element.name} <br>
+                Type =${element.brewery_type}<br>
+                Address =${element.address_2}<br>
+                Country =${element.country} <br>
+                Phone no =${element.phone} <br>
+                web : <a href=' ${web}'>${"https://api.openbrewerydb.org/breweries"}  </a>
+                `;
+            document.body.appendChild(div);
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+fetchdata();
